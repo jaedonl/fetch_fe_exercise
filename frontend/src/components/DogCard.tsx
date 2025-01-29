@@ -9,8 +9,8 @@ interface DogCardProps {
 
 const DogCard: React.FC<DogCardProps> = ({dog, isFavorite, onToggleFavorite}) => {
   return (
-    <div style={{ border: '1px solid black', padding: '10px', margin: '5px' }}>
-        <img src={dog.img} alt={dog.name} width="200" />
+    <div style={{ border: '1px solid black', padding: '10px', borderRadius: 5}}>
+        <img src={dog.img} alt={dog.name} width="200" height="200" style={{objectFit: "cover"}} />
         <h2>{dog.name}</h2>
         <p>Breed: {dog.breed}</p>
         <p>Age: {dog.age} years old</p>

@@ -7,6 +7,13 @@ export const getBreeds = async (): Promise<string[]> => {
     return response.data;
 };
 
+interface SearchResponse {
+    resultIds: string[];
+    total: number;
+    next?: number;
+    prev?: number;
+}
+
 // Search for dogs based on filters
 export const searchDogs = async (filters: {
     breeds?: string[];
@@ -16,11 +23,11 @@ export const searchDogs = async (filters: {
     size?: number;
     from?: number;
     sort?: string;
-}): Promise<string[]> => {
-    const response = await apiClient.get<{ resultIds: string[] }>("/dogs/search", {
+}): Promise<SearchResponse> => {
+    const response = await apiClient.get<SearchResponse>("/dogs/search", {
         params: filters,
     });
-    return response.data.resultIds;
+    return response.data;
 };
 
 // Fetch full details of dogs using their IDs

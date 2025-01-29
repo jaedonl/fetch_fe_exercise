@@ -11,9 +11,7 @@ const LoginPage: React.FC = () => {
     useEffect(() => {
         const checkLoginStatus = async () => {
             const loggedIn = await checkAuthStatus();
-            if (loggedIn) {
-                navigate('/search');
-            }
+            if (loggedIn) navigate('/search');
         }
         checkLoginStatus();
     }, [navigate])

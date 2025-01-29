@@ -14,7 +14,6 @@ export const checkAuthStatus = async (req: Request, res: Response): Promise<void
         res.status(500).json({ error: "Internal Server Error" });
     }
     
-  
     // Otherwise, return authenticated: false
     res.status(401).json({ authenticated: false });
 };
@@ -24,12 +23,6 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
     try {
         const { name, email } = req.body;
         const response = await apiClient.post("/auth/login", { name, email });
-
-        // res.cookie("fetch-access-token", response.headers["set-cookie"], {
-        //     httpOnly: true,
-        //     secure: true,
-        //     sameSite: "none",
-        // });
 
         const token = response.headers["set-cookie"]?.find((cookie: string) => cookie.includes("fetch-access-token"));
 
@@ -46,8 +39,8 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
     }
 };
 
-export const logout = (_req: Request, res: Response): void => {
-    // await apiClient.post("/auth/logout");
+export const logout = async (_req: Request, res: Response) => {
+    await apiClient.post("/auth/logout");
     res.clearCookie("fetch-access-token", {
         httpOnly: true,
         secure: true,
