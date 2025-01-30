@@ -1,0 +1,146 @@
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+
+.searchPageMain {
+    max-width: 1280px;
+    margin: 1rem auto;
+    gap: 2rem;
+    padding: 0 2rem;
+
+    @media screen and (max-width: $medium) {
+        padding: 0 1rem;
+    }
+
+    .searchMain {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        gap: 2rem;
+
+        @media screen and (max-width: $medium) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .asideContainer {
+        .filterCloseBtn {
+            display: none;
+
+            @media screen and (max-width: $medium) {
+                display: block;
+                position: fixed;
+                top: 1rem;
+                right: 1rem;
+                background: none;
+                border: none;
+                box-shadow: none;
+            }
+        }
+        @media screen and (max-width: $medium) {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #F9F9F8;      
+            justify-content: center;
+            align-items: center;
+            z-index: 999;      
+
+            &.open {
+                display: flex;
+                
+            }
+            &.close {
+                display: none;
+            }
+        }
+    }
+
+    .searchSectionHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        @media screen and (max-width: $small) {
+            display: block;
+        }
+        
+        h1 {
+            font-size: 24px;
+        }
+        
+    }
+
+    .gridActionBtns {
+        display: flex;
+        gap: 1rem;
+        
+        .filterSelect {
+            width: fit-content;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease-in-out;
+            box-shadow: 0 1px 3px rgba(77,71,81,.4);
+            background-color: #fff;
+            
+          
+            &:focus {
+              border-color: #007bff;
+              outline: none;
+              box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            }
+        }
+
+        button, .filterSelect, option, span {
+            @media screen and (max-width: $small) {
+                font-size: 14px;
+            }
+        }
+
+        
+
+        .mobileFilter {
+            display: none;
+
+            @media screen and (max-width: $medium) {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+        }
+    
+    }
+
+    
+    .cardGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+        margin-top: 1rem;
+
+        @media screen and (max-width: $large) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media screen and (max-width: $small) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .pagination {
+        margin: 2rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+
+        @media screen and (max-width: $small) {
+            gap: 1rem;
+        }
+    }
+}

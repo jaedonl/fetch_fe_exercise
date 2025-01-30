@@ -1,0 +1,21 @@
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+
+.matchPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+
+    h1 {
+        @media screen and (max-width: $medium) {
+            font-size: 24px;
+        }
+    }
+
+    .matchedContainer {
+        margin-top: 1rem;
+    }
+}

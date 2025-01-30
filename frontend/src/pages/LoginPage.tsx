@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/authApi";
 import { checkAuthStatus } from "../api/authApi";
+import styles from '../styles/pages/Login.module.scss'
 
 const LoginPage: React.FC = () => {
     const [name, setName] = useState<string>("");
@@ -27,27 +28,35 @@ const LoginPage: React.FC = () => {
     }
 
     return (
-        <div>
-            <h1>Login</h1>
+        <main className={styles.loginPage}>
+            <h1 className={styles.loginTitle}>Login</h1>
             <form onSubmit={handleLogin}>
-                <input 
-                    type="text" 
-                    placeholder="Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
+                <div className={styles.formElementWrapper}>
+                    <label className={styles.loginLabel}>Name</label>
+                    <input 
+                        className={styles.loginInput}
+                        type="text" 
+                        placeholder="Name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </div>
 
-                <input 
-                    type="email" 
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
+                <div className={styles.formElementWrapper}>
+                    <label className={styles.loginLabel}>Email</label>
+                    <input 
+                        className={styles.loginInput}
+                        type="email" 
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
                 <button type="submit">Login</button>
             </form>
-        </div>
+        </main>
     )
 }
 

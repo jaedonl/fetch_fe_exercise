@@ -1,0 +1,55 @@
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+
+header {
+    background: linear-gradient(to right, #7d1f70 , #551653);
+    box-shadow: 0 1px 3px rgba(77,71,81,.6);
+
+    .logo {
+        color: #fff;
+        font-size: 24px;
+        font-weight: 800;
+        margin: 0;
+
+        @media screen and (max-width: $small) {
+            font-size: 16px;
+        }
+    }
+
+    .headerWrapper {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        
+        @media screen and (max-width: $medium) {
+            padding: 1rem;
+        }
+    
+
+        .headerLink {
+            display: flex;
+            gap: 1rem;
+
+            button {
+                font-size: 14px;
+            }
+
+            .matchLink {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                box-shadow: 0 1px 3px rgba(77,71,81,.4);
+
+                .hideOnMobile {
+                    @media screen and (max-width: $small) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

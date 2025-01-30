@@ -1,0 +1,42 @@
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+
+.asideFilter {
+    margin: 1rem 0;
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .formElementWrapper {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+    
+        .filterLabel {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+    
+        .filterInput, .filterSelect {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box; 
+            transition: border-color 0.3s ease-in-out;
+            box-shadow: 0 1px 3px rgba(77,71,81,.3);
+          
+            &:focus {
+              border-color: #007bff;
+              outline: none;
+              box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            }
+        }
+    }
+}
+

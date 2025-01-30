@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { matchDog, getDogDetails } from "../api/dogsApi";
 import { Dog } from '../types/dogTypes';
 import DogCard from '../components/DogCard';
+import styles from '../styles/pages/Match.module.scss'
+
 
 const MatchPage: React.FC = () => {
     const [matchedDog, setMatchedDog] = useState<Dog | null>(null);
@@ -31,17 +33,15 @@ const MatchPage: React.FC = () => {
     }
 
     return (
-        <div>
+        <main className={styles.matchPage}>
             <h1>Your Matched Dog</h1>
-            {matchedDog
-                ? (
-                    <DogCard dog={matchedDog} />
-                )   
-                : (
-                    <p>Finding your perfect match...</p>
-                )
-            }
-        </div>
+            <section className={styles.matchedContainer}>
+                {matchedDog
+                    ? (<DogCard dog={matchedDog} />)   
+                    : (<p>Finding your perfect match...</p>)
+                }
+            </section>
+        </main>
     )
 }
 
