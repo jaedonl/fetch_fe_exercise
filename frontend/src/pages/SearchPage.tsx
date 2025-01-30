@@ -8,12 +8,14 @@ import AsideFilter from "../components/AsideFilter";
 import styles from '../styles/pages/SearchPage.module.scss'
 import filter from '../assets/filter-list.svg';
 import close from '../assets/close.svg';
+import { useFavorites } from "../context/FavoritesContext";
+
 
 const SearchPage: React.FC = () => {
     const [dogs, setDogs] = useState<Dog[]>([]);
     const [breeds, setBreeds] = useState<string[]>([]);
     const [selectedBreed, setSelectedBreed] = useState<string>("");
-    const [favorites, setFavorites] = useState<string[]>([]);
+    const { favorites, toggleFavorite } = useFavorites(); 
     const [totalResults, setTotalResults] = useState<number>(0);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [sortOrder, setSortOrder] = useState<string>("asc")
@@ -78,31 +80,22 @@ const SearchPage: React.FC = () => {
             setCurrentPage((prev) => prev - 1);
         }
     };
-
-    const toggleFavorite = (dogId: string) => {
-        setFavorites((prevFavorites) => {
-            if (prevFavorites.includes(dogId)) {
-                return prevFavorites.filter(id => id !== dogId);
-            } else {
-                return [...prevFavorites, dogId];
-            }
-        });
-    };
     
     const handleMatch = () => {
         if (favorites.length === 0) {
             alert("Please select at least one favorite dog.");
             return;
         }
+        const existingFavorites = JSON.parse(localStorage.getItem("favoriteDogs") || "[]");
+        const updatedFavorites = [...new Set([...existingFavorites, ...favorites])];
+
         // Store selected favorites in localStorage
-        localStorage.setItem("favoriteDogs", JSON.stringify(favorites));
+        localStorage.setItem("favoriteDogs", JSON.stringify(updatedFavorites));
         navigate("/match");
     };
 
     const toggleFilter = () => {
         setIsMobileFilterOn(prev => !prev)
-
-        // isMobileFilterOn ? 
     }
 
     return (
@@ -151,11 +144,9 @@ const SearchPage: React.FC = () => {
                         ))}
                     </div>
 
-                    
-            
-                    {/* <button onClick={handleMatch} disabled={favorites.length === 0}>
+                    <button onClick={handleMatch} disabled={favorites.length === 0}>
                         Find My Match
-                    </button> */}
+                    </button>
                 </section>
             </section>  
 

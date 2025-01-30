@@ -1,13 +1,15 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useNavigate, Link } from "react-router-dom";
 import { logout } from "../api/authApi";
 import styles from "../styles/components/Header.module.scss";
 import heartFilled from '../assets/heart-fill.svg';
 import { checkAuthStatus } from '../api/authApi';
+import { useFavorites } from "../context/FavoritesContext";
 
 const Header = () => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const { favorites } = useFavorites();
 
     useEffect(() => {
         const isLoggedIn = async () => {
@@ -31,12 +33,17 @@ const Header = () => {
             console.error("error logging out: ", error);
         }
     }
+
     const handleMatch = () => {
-        if (localStorage.getItem("favoriteDogs") === null) {
+        if (favorites.length === 0) {
             alert("Please select at least one favorite dog.");
             return;
         }
+        const existingFavorites = JSON.parse(localStorage.getItem("favoriteDogs") || "[]");
+        const updatedFavorites = [...new Set([...existingFavorites, ...favorites])];
+
         // Store selected favorites in localStorage
+        localStorage.setItem("favoriteDogs", JSON.stringify(updatedFavorites));
         navigate("/match");
     };
 
@@ -49,7 +56,7 @@ const Header = () => {
 
                 <div className={styles.headerLink}>
                     {isLoggedIn && (
-                        <button onClick={handleMatch} className={styles.matchLink}>
+                        <button onClick={handleMatch} disabled={!favorites} className={styles.matchLink}>
                             <img src={heartFilled} alt='heart filled' className={styles.heart} />
                             <span className={styles.hideOnMobile}>Find My Match</span>                        
                         </button>
