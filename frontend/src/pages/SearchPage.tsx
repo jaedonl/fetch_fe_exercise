@@ -86,11 +86,11 @@ const SearchPage: React.FC = () => {
             alert("Please select at least one favorite dog.");
             return;
         }
-        const existingFavorites = JSON.parse(localStorage.getItem("favoriteDogs") || "[]");
-        const updatedFavorites = [...new Set([...existingFavorites, ...favorites])];
+        // const existingFavorites = JSON.parse(localStorage.getItem("favoriteDogs") || "[]");
+        // const updatedFavorites = [...new Set([...existingFavorites, ...favorites])];
 
         // Store selected favorites in localStorage
-        localStorage.setItem("favoriteDogs", JSON.stringify(updatedFavorites));
+        localStorage.setItem("favoriteDogs", JSON.stringify(favorites));
         navigate("/match");
     };
 
