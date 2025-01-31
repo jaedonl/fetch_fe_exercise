@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
         const checkLoginStatus = async () => {
             const loggedIn = await checkAuthStatus();
             if (loggedIn) {
-                setTimeout(() => navigate('/search'), 500);
+                navigate('/search')
             }
         }
         checkLoginStatus();
@@ -26,7 +26,7 @@ const LoginPage: React.FC = () => {
             setName(name);
             setEmail(email);
             localStorage.setItem("isLoggedIn", "true");
-            setTimeout(() => navigate("/search"), 500);
+            navigate("/search")
         } catch (error) {
             alert("login failed. Please check your credentials.");
         }
