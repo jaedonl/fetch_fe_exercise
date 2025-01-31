@@ -21,38 +21,7 @@ cd dog-finder
 
 ---
 
-## ** Backend Setup (Node.js + Express)**
 
-### ** Navigate to the backend folder**
-
-```sh
-cd backend
-```
-
-### ** Install Dependencies**
-
-```sh
-npm install
-```
-
-### ** Create an ****\`\`**** file**
-
-Create a `.env` file in the `backend` folder and add:
-
-```
-PORT=5001
-BASE_API_URL=[this is secret!]
-```
-
-### **▶️ Run the Backend Server**
-
-```sh
-npm run dev
-```
-
-By default, the server runs on \`\`.
-
----
 
 ## ** Frontend Setup (React + Vite + TypeScript)**
 
@@ -101,10 +70,9 @@ By default, the frontend runs on \`\`.
 
 # How to Use the Project
 
-1️⃣ **Start the backend** (`npm run dev` inside `backend` folder).\
-2️⃣ **Start the frontend** (`npm run dev` inside `frontend` folder).\
-3️⃣ **Go to** `http://localhost:5173` in your browser.\
-4️⃣ **Login and start searching for dogs!**
+1️⃣ **Start the frontend** (`npm run dev` inside `frontend` folder).\
+2️⃣ **Go to** `http://localhost:5173` in your browser.\
+3️⃣ **Login and start searching for dogs!**
 
 ---
 
