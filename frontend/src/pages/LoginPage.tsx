@@ -12,7 +12,9 @@ const LoginPage: React.FC = () => {
     useEffect(() => {
         const checkLoginStatus = async () => {
             const loggedIn = await checkAuthStatus();
-            if (loggedIn) navigate('/search');
+            if (loggedIn) {
+                setTimeout(() => navigate('/search'), 500);
+            }
         }
         checkLoginStatus();
     }, [navigate])
@@ -21,7 +23,10 @@ const LoginPage: React.FC = () => {
         e.preventDefault();
         try {
             await login(name, email);
-            navigate("/search");
+            setName(name);
+            setEmail(email);
+            localStorage.setItem("isLoggedIn", "true");
+            setTimeout(() => navigate("/search"), 500);
         } catch (error) {
             alert("login failed. Please check your credentials.");
         }
@@ -30,7 +35,7 @@ const LoginPage: React.FC = () => {
     return (
         <main className={styles.loginPage}>
             <h1 className={styles.loginTitle}>Login</h1>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} autoComplete="off" noValidate>
                 <div className={styles.formElementWrapper}>
                     <label className={styles.loginLabel}>Name</label>
                     <input 
@@ -40,6 +45,7 @@ const LoginPage: React.FC = () => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
+                        autoComplete="off"
                     />
                 </div>
 
@@ -47,11 +53,13 @@ const LoginPage: React.FC = () => {
                     <label className={styles.loginLabel}>Email</label>
                     <input 
                         className={styles.loginInput}
-                        type="email" 
+                        type="email"
+                        name="email"
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
+                        autoComplete="off"
                     />
                 </div>
                 <button type="submit">Login</button>

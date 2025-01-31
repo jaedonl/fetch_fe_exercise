@@ -31,7 +31,19 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
             return;
         }
 
-        res.json(200).json({ token });
+        const tokenValue = token.split(";")[0].split("=")[1];
+
+        res.cookie("fetch-access-token", tokenValue, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none", 
+            path: "/",
+            domain: "jaedon-fetch-exercise.netlify.app"
+        });
+
+        res.status(200).json({ message: "Login successful" });
+
+        // res.json(200).json({ token });
     } catch (error) {
         // res.status(500).json({ error: "Login failed" });
         console.error("login Error: ", error)
