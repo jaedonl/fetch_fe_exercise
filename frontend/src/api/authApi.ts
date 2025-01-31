@@ -1,15 +1,7 @@
 import { apiClient } from "./apiClient";
 
 export const login = async (name: string, email: string) => {
-    // await apiClient.post<{ token: string }>("/auth/login", { name, email });
-    try {
-      const response = await apiClient.post("/auth/login", { name, email });
-      console.log("Login successful:", response); 
-      localStorage.setItem("isLoggedIn", "true");
-    } catch (error) {
-      console.error("Login error:", error); 
-        throw error;
-    }
+    await apiClient.post<{ token: string }>("/auth/login", { name, email });
 };
 
 

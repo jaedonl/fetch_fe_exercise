@@ -31,15 +31,17 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
             return;
         }
 
-        const tokenValue = token.split(";")[0].split("=")[1];
+        // const tokenValue = token.split(";")[0].split("=")[1];
 
-        res.cookie("fetch-access-token", tokenValue, {
-            httpOnly: true,
-            secure: true,
-            sameSite: "none", 
-            path: "/",
-            domain: "jaedon-fetch-exercise.netlify.app"
-        });
+        // res.cookie("fetch-access-token", tokenValue, {
+        //     httpOnly: true,
+        //     secure: true,
+        //     sameSite: "none", 
+        //     path: "/",
+        //     domain: "jaedon-fetch-exercise.netlify.app"
+        // });
+
+        res.setHeader("Set-Cookie", token);
 
         res.status(200).json({ message: "Login successful" });
 

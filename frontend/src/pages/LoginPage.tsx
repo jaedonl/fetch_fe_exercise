@@ -23,9 +23,6 @@ const LoginPage: React.FC = () => {
         e.preventDefault();
         try {
             await login(name, email);
-            setName(name);
-            setEmail(email);
-            localStorage.setItem("isLoggedIn", "true");
             navigate("/search")
         } catch (error) {
             alert("login failed. Please check your credentials.");
